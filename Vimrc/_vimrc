@@ -50,11 +50,11 @@ if has("unix")
     execute pathogen#infect('/cygdrive/d/Vimrc/bundle/{}')
   else
     " linux
-    execute pathogen#infect('/mnt/D/Vimrc/bundle/{}')
+    execute pathogen#infect('/mnt/D/Utilities/Vimrc/bundle/{}')
   endif
 else
   " windows
-  execute pathogen#infect('D:/Vimrc/bundle/{}')
+  execute pathogen#infect('D:/Utilities/Vimrc/bundle/{}')
 endif
 
 
