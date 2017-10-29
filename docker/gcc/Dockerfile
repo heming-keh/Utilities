@@ -5,6 +5,10 @@ FROM ubuntu:xenial
 
 MAINTAINER heming keh <heming.keh@gmail.com>
 
-RUN sed -i -e "s/archive\.ubuntu\.com/mirrors\.aliyun\.com/" /etc/apt/sources.list
-RUN apt-get update
-RUN apt-get install -y gcc g++ gdb valgrind
+RUN set -ex; \
+	sed -i -e "s/archive\.ubuntu\.com/mirrors\.aliyun\.com/" /etc/apt/sources.list; \
+	apt-get update; \
+	apt-get install -y --no-install-recommends \
+		gcc g++ make gdb valgrind; \
+	rm -rf /var/lib/apt/lists/*
+
