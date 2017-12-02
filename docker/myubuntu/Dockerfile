@@ -1,5 +1,5 @@
 # clang c++ developer enviroment
-# docker build -t mylinux .
+# docker build -t myubuntu .
 
 FROM ubuntu:xenial
 
@@ -9,7 +9,10 @@ RUN set -ex; \
 	sed -i -e "s/archive\.ubuntu\.com/mirrors\.aliyun\.com/" /etc/apt/sources.list; \
 	apt-get update; \
 	apt-get install -y --no-install-recommends \
-		gcc g++ make gdb valgrind google-perftools libgoogle-perftools-dev; \
+		gcc g++ make gdb \
+		valgrind google-perftools libgoogle-perftools-dev \
+		wget iproute2 iputils-ping \
+		zip unzip; \
 	rm -rf /var/lib/apt/lists/*
 
 

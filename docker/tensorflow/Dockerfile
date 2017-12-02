@@ -1,4 +1,4 @@
-# clang c++ developer enviroment
+# tensorflow enviroment
 # docker build -t mylinux .
 
 FROM ubuntu:xenial
