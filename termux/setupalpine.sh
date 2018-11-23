@@ -6,7 +6,8 @@ VERSION="3.8"
 MINOR_VERSION="1"
 # getprop ro.product.cpu.abi
 ARCH="aarch64"
-MINROOTFS_URL="https://mirrors.aliyun.com/alpine/v${VERSION}/releases/${ARCH}/alpine-minirootfs-${VERSION}.${MINOR_VERSION}-aarch64.tar.gz"
+
+MINROOTFS_URL="https://mirrors.aliyun.com/alpine/v${VERSION}/releases/${ARCH}/alpine-minirootfs-${VERSION}.${MINOR_VERSION}-${ARCH}.tar.gz"
 MINROOTFS_FILE=${MINROOTFS_URL##*/}
 ALPINE_ROOT="${HOME}/alpine"
 
