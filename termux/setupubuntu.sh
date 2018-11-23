@@ -17,6 +17,10 @@ ROOTFS_FILE=${ROOTFS_URL##*/}
 SHA256SUM_FILE=${SHA256SUM_URL##*/}
 LINUX_ROOT="${HOME}/.${NAME}"
 
+# this folder must exist
+WORKDIR="/sdcard/workdir"
+
+
 
 ################################################################################
 # create ${LINUX_ROOT}
@@ -71,17 +75,19 @@ mkdir -p ${HOME}/bin
 cat > ${HOME}/bin/${NAME} <<- EOM
 getprop | sed -n -e 's/^\[net\.dns.\]: \[\(.*\)\]/\1/p' | sed '/^\s*$/d' | sed 's/^/nameserver /' > ${LINUX_ROOT}/etc/resolv.conf
 unset LD_PRELOAD
-proot --link2symlink -0 -r ${LINUX_ROOT} -b /dev/ -b /proc/ -b /sdcard -b ${HOME}:/root -w /root /usr/bin/env HOME=/root TERM="${TERM}" LANG=${LANG} PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games /bin/bash --login
+proot --link2symlink -0 -r ${LINUX_ROOT} -b /dev/ -b /proc/ -b /sdcard -b ${HOME}:/termux -w ${WORKDIR} /usr/bin/env -i HOME=/root TERM="${TERM}" LANG=${LANG} PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games /bin/bash --login
 EOM
 chmod a+x ${HOME}/bin/${NAME}
 
 
 ################################################################################
-# apt mirror
+# configurations
 ################################################################################
 
+# mirror
 sed -i -e "s/ports\.ubuntu\.com/mirrors\.aliyun\.com/" ${LINUX_ROOT}/etc/apt/sources.list
-
+# vimrc
+echo "source ${WORKDIR}/tools/vimrc/_vimrc" > ${LINUX_ROOT}/root/.vimrc
 
 echo
 echo "Make sure ~/bin in your PATH, use command ${NAME} to start."
