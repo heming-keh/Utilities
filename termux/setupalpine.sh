@@ -58,8 +58,8 @@ chmod a+x ${HOME}/bin/alpine
 
 # repositories
 sed -i -e "s/^/#/" ${ALPINE_ROOT}/etc/apk/repositories
-echo "http://mirrors.aliyun.com/alpine/${VERSION}/main" >> ${ALPINE_ROOT}/etc/apk/repositories
-echo "http://mirrors.aliyun.com/alpine/${VERSION}/community" >> ${ALPINE_ROOT}/etc/apk/repositories
+echo "http://mirrors.aliyun.com/alpine/v${VERSION}/main" >> ${ALPINE_ROOT}/etc/apk/repositories
+echo "http://mirrors.aliyun.com/alpine/v${VERSION}/community" >> ${ALPINE_ROOT}/etc/apk/repositories
 
 
 echo "done"
