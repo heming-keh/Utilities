@@ -44,7 +44,7 @@ if [ ! -e ${SHA256SUM_FILE} ]; then
   wget ${SHA256SUM_URL}
 fi
 
-sha256sum -c ${SHA256SUM_FILE} || {
+sed -n /${ARCH}/p ${SHA256SUM_FILE} | sha256sum -c || {
   exit
 }
 
