@@ -48,7 +48,7 @@ sed -n /${ARCH}/p ${SHA256SUM_FILE} | sha256sum -c || {
   exit
 }
 
-proot --link2symlink tar -xf ${ROOTFS_FILE} --exclude=./dev --exclude=dev
+proot --link2symlink tar -xvf ${ROOTFS_FILE} --exclude=./dev --exclude=dev
 
 
 # create startup script
@@ -62,7 +62,7 @@ chmod a+x ${HOME}/bin/${NAME}
 
 
 # repositories
-sed -i -e "s/archive\.ubuntu\.com/mirrors\.aliyun\.com/" ${LINUX_ROOT}/etc/apt/sources.list
+sed -i -e "s/ports\.ubuntu\.com/mirrors\.aliyun\.com/" ${LINUX_ROOT}/etc/apt/sources.list
 
 
 echo "done"
