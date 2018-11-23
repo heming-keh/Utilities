@@ -9,6 +9,7 @@ NAME="ubuntu"
 ROOTFS_URL="https://partner-images.canonical.com/core/bionic/current/ubuntu-bionic-core-cloudimg-${ARCH}-root.tar.gz"
 SHA256SUM_URL="${ROOTFS_URL%/*}/SHA256SUMS"
 ROOTFS_FILE=${ROOTFS_URL##*/}
+SHA256SUM_FILE=${SHA256SUM_URL##*/}
 LINUX_ROOT="${HOME}/${NAME}"
 
 
@@ -38,10 +39,12 @@ cd ${LINUX_ROOT}
 if [ ! -e ${ROOTFS_FILE} ]; then
   wget ${ROOTFS_URL}
   wget ${SHA256SUM_URL}
-  sha256sum -c ${SHA256SUM_URL} || {
-    exit
-  }
 fi
+
+sha256sum -c ${SHA256SUM_FILE} || {
+  exit
+}
+
 proot --link2symlink tar -xf ${ROOTFS_FILE} --exclude=./dev
 
 
