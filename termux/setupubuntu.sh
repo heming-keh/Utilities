@@ -20,7 +20,7 @@ if [ -d ${LINUX_ROOT} ]; then
     case ${yn} in
       [Yy]* )
         for entry in ${LINUX_ROOT}/*; do
-          if [[ $entry != *${ROOTFS_FILE} ]]; then
+          if [[ $entry != *${ROOTFS_FILE} ]] && [[ $entry != *${SHA256SUM_FILE} ]]; then
             rm -fr $entry
           fi
         done
