@@ -1,20 +1,13 @@
-" Add 'source D:/Vimrc/_vimrc' to .vimrc
-
-set autochdir
+"set autochdir
 set number
 set hlsearch
-
-
-if has("win32")
-  set directory =F:/vitmp
-  set backupdir =F:/vitmp
-  set fenc =utf-8  
-  set fencs =utf-8,ucs-bom,ucs-2,ucs-2le,prc,gb18030,gb2312,latin1       
-endif
+set ruler
+set autoindent
 
 
 au FileType markdown,xml,css,rst,html,javascript,js,vim,ruby,sh,bash setlocal et sta sw=2 sts=2
-au FileType autohotkey,java,matlab,python,c,h,cpp,hpp,s,S,asm,kotlin,fs,fsharp setlocal et sta sw=4 sts=4
+au FileType go,autohotkey,java,matlab,python,kotlin,fs,fsharp setlocal et sta sw=4 sts=4
+au FileType r,asm,s,S,c,h,cpp,hpp setlocal et sta sw=4 sts=4
 
 filetype on
 filetype plugin on
@@ -27,36 +20,29 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " disable double click Ctrl key
 inoremap  <C-C>  <Nop>
-"imap    `  <Esc>
 
-nmap <silent> <c-p> :bp<cr>
-nmap <silent> <c-n> :bn<cr>
+"nmap <silent> <c-p> :bp<cr>
+"nmap <silent> <c-n> :bn<cr>
 
-nmap <silent> <c-k> :wincmd k<cr>
-nmap <silent> <c-j> :wincmd j<cr>
-nmap <silent> <c-h> :wincmd h<cr>
-nmap <silent> <c-l> :wincmd l<cr>
+"nmap <silent> <c-k> :wincmd k<cr>
+"nmap <silent> <c-j> :wincmd j<cr>
+"nmap <silent> <c-h> :wincmd h<cr>
+"nmap <silent> <c-l> :wincmd l<cr>
+
+" os x copy and paste
+if has('unix')
+  if system('uname')=~'Darwin'
+    vmap <C-x> :!pbcopy<CR>  
+    vmap <C-c> :w !pbcopy<CR><CR> 
+  endif
+endif
 
 
 
 " Pathogen https://github.com/tpope/vim-pathogen
 " For windows, install pathogen to '~/vimfiles/autoload/pathogen.vim'
 " For linux, install pathogen to '~/.vim/autoload/pathogen.vim'
-"
-" Put plugins into directory 'D:/Vimrc/bundle/'
-if has("unix")
-  if has("win32unix")
-    " cygwin
-    execute pathogen#infect('/cygdrive/d/Vimrc/bundle/{}')
-  else
-    " linux
-    execute pathogen#infect('/mnt/D/Utilities/Vimrc/bundle/{}')
-  endif
-else
-  " windows
-  execute pathogen#infect('D:/Utilities/Vimrc/bundle/{}')
-endif
-
+execute pathogen#infect()
 
 " https://github.com/derekwyatt/vim-scala.git
 
@@ -64,3 +50,5 @@ syntax on
 filetype on
 filetype plugin indent on
 
+
+" git://github.com/toyamarinyon/vim-swift.git
