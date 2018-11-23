@@ -38,6 +38,9 @@ cd ${LINUX_ROOT}
 # fetch and extract ROOTFS
 if [ ! -e ${ROOTFS_FILE} ]; then
   wget ${ROOTFS_URL}
+fi
+
+if [ ! -e ${SHA256SUM_FILE} ]; then
   wget ${SHA256SUM_URL}
 fi
 
