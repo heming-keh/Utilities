@@ -51,4 +51,4 @@ filetype on
 filetype plugin indent on
 
 
-" git://github.com/toyamarinyon/vim-swift.git
+" https://github.com/keith/swift.vim.git
