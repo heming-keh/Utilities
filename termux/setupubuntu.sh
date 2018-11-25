@@ -72,7 +72,7 @@ mkdir -p ${HOME}/bin
 cat > ${HOME}/bin/${NAME} <<- EOM
 getprop | sed -n -e 's/^\[net\.dns.\]: \[\(.*\)\]/\1/p' | sed '/^\s*$/d' | sed 's/^/nameserver /' > ${LINUX_ROOT}/etc/resolv.conf
 unset LD_PRELOAD
-proot --link2symlink -0 -r ${LINUX_ROOT} -b /dev/ -b /proc/ -b /sdcard -b ${HOME}:/termux -w /termux /usr/bin/env -i HOME=/root TERM="${TERM}" LANG=${LANG} PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games /bin/bash --login
+proot --link2symlink -0 -r ${LINUX_ROOT} -b /dev/ -b /proc/ -b /sdcard -b ${HOME}:/termux -w /sdcard/workdir /usr/bin/env -i HOME=/root TERM="${TERM}" LANG=${LANG} PATH=/usr/local/sbin:/usr/local/bin:/bin:/usr/bin:/sbin:/usr/sbin:/usr/games:/usr/local/games /bin/bash --login
 EOM
 chmod a+x ${HOME}/bin/${NAME}
 
